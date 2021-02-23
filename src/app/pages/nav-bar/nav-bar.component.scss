@@ -1,0 +1,15 @@
+a >h1{
+    color: white;
+}
+a:hover{
+    color: white;
+    text-decoration: none;
+}
+.removeLine{
+    text-decoration: none;
+}
+.loader-container{
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+}

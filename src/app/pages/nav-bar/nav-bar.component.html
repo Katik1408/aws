@@ -1,0 +1,17 @@
+<mat-toolbar color="primary" >
+    <mat-toolbar-row>
+     <a class="removeLine" href="#"> <h1>AWSS3Buckets Client</h1></a>
+      <span class="menu-spacer"></span>
+      <div>
+        <a mat-button [routerLink]="'/showlist'"> List All Buckets </a>
+        <a mat-button (click) ="openDialog()"> Create Bucket </a>
+      </div>
+    </mat-toolbar-row>
+  
+    <mat-toolbar-row>
+        <span style="font-size: 12px;">Simple WebApp to Perform AWSBucket Operations</span>
+      </mat-toolbar-row>
+  </mat-toolbar>
+  <div  *ngIf="progressBarService.isLoading | async" class="loader-container"  >
+    <mat-progress-bar mode="indeterminate" ></mat-progress-bar>
+  </div>

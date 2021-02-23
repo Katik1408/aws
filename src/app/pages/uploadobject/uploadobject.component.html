@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Upload New Object</h2>
+
+<mat-dialog-content>
+
+
+
+    <!-- <mat-form-field>
+        <ngx-mat-file-input [formControl]="fileControl" [multiple]="multiple" [accept]="accept" >
+          <mat-icon ngxMatFileInputIcon>folder</mat-icon>
+        </ngx-mat-file-input>
+      </mat-form-field> -->
+      <form>
+        <input  class="form-control" id="fileInput" type='file' (change)="onChange($event)" >
+      </form>
+      
+      <!--(click)="fileInput.value = null"  (change)="onSelectFile($event.target.files)"-->
+    
+
+</mat-dialog-content>
+
+<mat-dialog-actions >
+    <button mat-button mat-dialog-close>Cancel</button>
+     <button  mat-button (click)="uploadObject()"   [mat-dialog-close]="true" cdkFocusInitial>Upload</button>
+  </mat-dialog-actions>
