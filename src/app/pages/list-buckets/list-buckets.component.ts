@@ -25,8 +25,6 @@ export interface Tile {
   text: string;
 }
 
-
-
 @Component({
   selector: 'app-list-buckets',
   templateUrl: './list-buckets.component.html',
@@ -61,7 +59,7 @@ export class ListBucketsComponent implements  OnInit  {
   ];
 
  
-  constructor( private bucketService : BucketServiceService,private _snackBar: MatSnackBar,
+  constructor(private bucketService : BucketServiceService,private _snackBar: MatSnackBar,
               private matDialog: MatDialog,private dataService:DataService ){}
 
 
@@ -69,13 +67,11 @@ export class ListBucketsComponent implements  OnInit  {
     this.getAllBuckets();
     
   }
- 
 
   openUploadDialog() {
     const dialogConfig = new MatDialogConfig();
     this.matDialog.open(UploadobjectComponent, dialogConfig);
   }
-
 
   getAllBuckets(){
     this.bucketService.listAllBuckets().subscribe((data:Listbucket)=>{
