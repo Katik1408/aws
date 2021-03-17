@@ -5,8 +5,8 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import {finalize  } from 'rxjs/operators'
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { ProgressBarService } from '../shared/progress-bar.service';
 
 @Injectable({
@@ -20,9 +20,9 @@ export class InterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     this.progressBarService.isLoading.next(true);
     return next.handle(req).pipe(
-      finalize(
-        ()=>{
-          this.progressBarService.isLoading.next(false);
-        }));
+      finalize(() => {
+        this.progressBarService.isLoading.next(false);
+      })
+    );
   }
 }

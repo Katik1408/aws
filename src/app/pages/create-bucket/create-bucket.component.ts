@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { BucketServiceService } from 'src/app/services/bucketservice/bucket-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { S3Response } from 'src/app/models/s3bucket.model';
 
 export interface DialogData {
   animal: string;
@@ -23,9 +24,11 @@ export class CreateBucketComponent {
 
   createBucket() {
     this.createBucketService.createBucket(this.bucketName).subscribe(
-      (data) => {
-        console.log('Success');
-        this.openSuccessSnackBar();
+      (data: S3Response) => {
+        console.log(data);
+        if (data.status === 500) {
+          this.openErrorSnackBar();
+        } else this.openSuccessSnackBar();
       },
       (err) => {
         this.openErrorSnackBar();
@@ -35,7 +38,7 @@ export class CreateBucketComponent {
   }
 
   openErrorSnackBar() {
-    this._snackBar.open('An Error Occured.Please Try Again!', '', {
+    this._snackBar.open('Bucket Name Already Exists!', '', {
       duration: 3000,
       panelClass: ['errorSnackBar'],
     });

@@ -4,7 +4,10 @@ export interface Listbucket{
         bucketName:string
     }]
 }
-
+export interface S3Response{
+    status:number,
+    message:string
+}
 export interface ObjectList{
     s3Objects:[{
         bucketName:string

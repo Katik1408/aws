@@ -16,6 +16,7 @@ import { ListBucketsComponent } from './pages/list-buckets/list-buckets.componen
 import { MatTableModule } from '@angular/material/table';
 import { CreateBucketComponent } from './pages/create-bucket/create-bucket.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {
   MatFormFieldControl,
   MatFormFieldModule,
@@ -27,7 +28,7 @@ import { UploadobjectComponent } from './pages/uploadobject/uploadobject.compone
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-
+import {ErrorInterceptor} from'src/app/_interceptors/errors/error.interceptor';
 import {InterceptorService} from '../app/services/shared/interceptor.service'
 
 @NgModule({
@@ -36,7 +37,7 @@ import {InterceptorService} from '../app/services/shared/interceptor.service'
     NavBarComponent,
     ListBucketsComponent,
     CreateBucketComponent,
-    UploadobjectComponent,
+    UploadobjectComponent 
   ],
   imports: [
     BrowserModule,
@@ -58,10 +59,12 @@ import {InterceptorService} from '../app/services/shared/interceptor.service'
     NgxMatFileInputModule,
     MatGridListModule,
     MatProgressBarModule,
+    MatProgressSpinnerModule 
   ],
   providers: [
     { provide: MatFormFieldControl, useExisting: CreateBucketComponent },
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService,multi:true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi:true },
   ],
   bootstrap: [AppComponent],
 })
